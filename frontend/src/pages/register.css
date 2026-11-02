@@ -1,0 +1,54 @@
+
+/* Registration-only layout */
+
+.register-benefits {
+  display: grid;
+  gap: 23px;
+  margin-top: 40px;
+}
+
+.register-benefits > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.register-benefits > div > span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: #a9c8f5;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.register-benefits p {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+}
+
+.register-benefits strong {
+  font-size: 14px;
+}
+
+.register-benefits small {
+  color: #b9c6d9;
+  font-size: 12px;
+}
+
+.password-hint {
+  margin: 0;
+  color: #8490a2;
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .register-benefits {
+    gap: 16px;
+  }
+}

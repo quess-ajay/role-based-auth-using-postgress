@@ -1,0 +1,71 @@
+
+### Test the backend server
+GET http://localhost:5000/
+
+###
+
+### Test the Neon database connection
+GET http://localhost:5000/api/health
+
+###
+
+### Register a test student
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Admin",
+  "email": "ajayshsh7@gmail.com",
+  "password": "ajay123456"
+}
+
+###
+
+### Log in as the test student
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ajayshsh7@gmail.com",
+  "password": "ajay123456"
+}
+
+### Get the logged-in user
+GET http://localhost:5000/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzMjA0YzY2LTA2MzItNGFhMS05NTM2LTQzZGFjYzczNzAzYSIsImlhdCI6MTc5MzI0OTkyMiwiZXhwIjoxNzkzMzM2MzIyfQ.EzNK2EoY-lFvXUuAHJ_wusfgmCBNW3aU82ZiZ2FFiic
+
+### Student check-in
+POST http://localhost:5000/api/attendance/check-in
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzMjA0YzY2LTA2MzItNGFhMS05NTM2LTQzZGFjYzczNzAzYSIsImlhdCI6MTc5MzI0OTkyMiwiZXhwIjoxNzkzMzM2MzIyfQ.EzNK2EoY-lFvXUuAHJ_wusfgmCBNW3aU82ZiZ2FFiic
+Content-Type: application/json
+
+### Get today's attendance
+GET http://localhost:5000/api/attendance/today
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzMjA0YzY2LTA2MzItNGFhMS05NTM2LTQzZGFjYzczNzAzYSIsImlhdCI6MTc5MzI0OTkyMiwiZXhwIjoxNzkzMzM2MzIyfQ.EzNK2EoY-lFvXUuAHJ_wusfgmCBNW3aU82ZiZ2FFiic
+
+### Student check-out
+POST http://localhost:5000/api/attendance/check-out
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzMjA0YzY2LTA2MzItNGFhMS05NTM2LTQzZGFjYzczNzAzYSIsImlhdCI6MTc5MzI0OTkyMiwiZXhwIjoxNzkzMzM2MzIyfQ.EzNK2EoY-lFvXUuAHJ_wusfgmCBNW3aU82ZiZ2FFiic
+Content-Type: application/json
+
+### Admin: View today's attendance
+GET http://localhost:5000/api/attendance/admin/today
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQyNGY1MjQ5LTVkMzYtNDdkYi04MmZmLWUzM2YzODgxYTYzZiIsImlhdCI6MTc5MzI1MDg5OCwiZXhwIjoxNzkzMzM3Mjk4fQ.FK_oP-2CbPZOIGhEATWTQ0RyVSNSg9wI5AXg8hcL8qM
+
+### Admin: Approve check-out
+PATCH http://localhost:5000/api/attendance/admin/a1c44b07-b05e-44e6-af2f-d1ae847ab2a1/check-out
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQyNGY1MjQ5LTVkMzYtNDdkYi04MmZmLWUzM2YzODgxYTYzZiIsImlhdCI6MTc5MzI1MDg5OCwiZXhwIjoxNzkzMzM3Mjk4fQ.FK_oP-2CbPZOIGhEATWTQ0RyVSNSg9wI5AXg8hcL8qM
+Content-Type: application/json
+
+{
+  "decision": "approve"
+}
+
+### Admin: Approve checkout
+PATCH http://localhost:5000/api/attendance/admin/a1c44b07-b05e-44e6-af2f-d1ae847ab2a1/check-in
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQyNGY1MjQ5LTVkMzYtNDdkYi04MmZmLWUzM2YzODgxYTYzZiIsImlhdCI6MTc5MzI1MDg5OCwiZXhwIjoxNzkzMzM3Mjk4fQ.FK_oP-2CbPZOIGhEATWTQ0RyVSNSg9wI5AXg8hcL8qM
+Content-Type: application/json
+
+{
+  "decision": "approve"
+}
