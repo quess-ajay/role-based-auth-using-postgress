@@ -10,11 +10,15 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
 
 const attendanceRoutes = require("./routes/attendance");
 app.use("/api/attendance", attendanceRoutes);
+
+const managerRoutes = require("./routes/manager");
+app.use("/api/manager", managerRoutes);
 
 
 // Test route

@@ -29,6 +29,14 @@ Content-Type: application/json
   "email": "ajayshsh7@gmail.com",
   "password": "ajay123456"
 }
+### Log in as the test student
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "johnlouis@gmail.com",
+  "password": "12345678"
+}
 
 ### Get the logged-in user
 GET http://localhost:5000/api/auth/me
@@ -68,4 +76,21 @@ Content-Type: application/json
 
 {
   "decision": "approve"
+}
+
+
+GET http://localhost:5000/api/attendance/history
+Authorization: Bearer YOUR_STUDENT_TOKEN
+
+### Manager: View all students' attendance
+GET http://localhost:5000/api/manager/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQyNGY1MjQ5LTVkMzYtNDdkYi04MmZmLWUzM2YzODgxYTYzZiIsImlhdCI6MTc5Mzc3NjIzOSwiZXhwIjoxNzkzODYyNjM5fQ.m_h1u5aSnnAFHDIoJ5NErzJXWKwxNiL5YdLMpgPnGGs
+
+### Manager: promote a student to admin
+PATCH http://localhost:5000/api/manager/users/734b00f0-3770-4a65-ba9e-9c1cb0f847f5/role
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQyNGY1MjQ5LTVkMzYtNDdkYi04MmZmLWUzM2YzODgxYTYzZiIsImlhdCI6MTc5Mzc3NjU4NiwiZXhwIjoxNzkzODYyOTg2fQ.-ALe8zlmkWaZeggIgOmeLRg4qsnfs3W_0tVS6ph814Y
+
+Content-Type: application/json
+{
+  "role": "ADMIN"
 }

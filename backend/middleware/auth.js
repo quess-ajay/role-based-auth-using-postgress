@@ -1,6 +1,8 @@
+
 const jwt = require("jsonwebtoken");
 const prisma = require("../lib/prisma");
 
+// Verify JWT and fetch the user's current details from PostgreSQL
 async function verifyToken(req, res, next) {
   try {
     const authHeader = req.headers.authorization;
@@ -42,4 +44,30 @@ async function verifyToken(req, res, next) {
   }
 }
 
-module.exports = { verifyToken };
+// Allow only ADMIN users
+function requireAdmin(req, res, next) {
+  if (!req.user || req.user.role !== "ADMIN") {
+    return res.status(403).json({
+      message: "Admin access only",
+    });
+  }
+
+  next();
+}
+
+// Allow only MANAGER users
+function requireManager(req, res, next) {
+  if (!req.user || req.user.role !== "MANAGER") {
+    return res.status(403).json({
+      message: "Manager access only",
+    });
+  }
+
+  next();
+}
+
+module.exports = {
+  verifyToken,
+  requireAdmin,
+  requireManager,
+};
