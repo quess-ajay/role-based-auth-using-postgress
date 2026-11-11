@@ -47,8 +47,6 @@ router.patch("/users/:id/role", async (req, res) => {
   try {
     const { id } = req.params;
     const role = req.body?.role;
-    console.log("Received request body:", req.body);
-    console.log("Received role:", req.body?.role);
 
     // Only these two role changes are allowed
     if (!["USER", "ADMIN"].includes(role)) {

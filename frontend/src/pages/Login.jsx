@@ -28,14 +28,20 @@ export default function Login() {
       const response = await getCurrentUser(data.token);
       const user = response.user ?? response;
 
-      if (user.role !== "USER" && user.role !== "ADMIN") {
+      if (!["USER", "ADMIN", "MANAGER"].includes(user.role)) {
         throw new Error("Unable to determine your account role.");
       }
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", user.role);
 
-      navigate(user.role === "ADMIN" ? "/admin" : "/student", {
+      const dashboardRoutes = {
+        USER: "/student",
+        ADMIN: "/admin",
+        MANAGER: "/manager",
+      };
+
+      navigate(dashboardRoutes[user.role], {
         replace: true,
       });
     } catch (error) {

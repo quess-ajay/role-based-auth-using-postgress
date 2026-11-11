@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import ManagerDashboard from "./pages/ManagerDashboard";
 
 function ProtectedRoute({ children, allowedRole }) {
   const token = localStorage.getItem("token");
@@ -14,9 +15,15 @@ function ProtectedRoute({ children, allowedRole }) {
   }
 
   if (allowedRole && role !== allowedRole) {
+    const dashboardRoutes = {
+      USER: "/student",
+      ADMIN: "/admin",
+      MANAGER: "/manager",
+    };
+
     return (
       <Navigate
-        to={role === "ADMIN" ? "/admin" : "/student"}
+        to={dashboardRoutes[role] || "/"}
         replace
       />
     );
@@ -46,6 +53,15 @@ function App() {
           element={
             <ProtectedRoute allowedRole="ADMIN">
               <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/manager"
+          element={
+            <ProtectedRoute allowedRole="MANAGER">
+              <ManagerDashboard />
             </ProtectedRoute>
           }
         />
